@@ -56,13 +56,6 @@
                                     {!! $errors->first('mobile', '<span class="invalid-feedback">:message</span>') !!}
                                 </div>
                                 <div class="mb-3">
-                                    <label for="staff_id" class="form-label">Staff ID</label>
-                                    <input type="text" name="staff_id"
-                                        class="form-control @error('staff_id') is-invalid @enderror" id="staff_id"
-                                        placeholder="Enter staff ID" value="{{ old('staff_id', $user->staff_id) }}">
-                                    {!! $errors->first('staff_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
-                                <div class="mb-3">
                                     <label id="status1" class="form-label">Status</label>
                                     <select name="status" style="width:100%" id="status1"
                                         class="form-control select2 @error('status') is-invalid @enderror">
@@ -79,54 +72,6 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Business Channel <span
-                                            class="text-danger">*</span></label>
-                                    <select name="channel_id" id="channel_id" onchange=""
-                                        class="form-control select2 @error('channel_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Business Channel</option>
-                                        @foreach ($channels as $channel)
-                                            <option value="{{ $channel->id }}"
-                                                {{ $user->channel_id == $channel->id ? 'selected' : '' }}>
-                                                {{ $channel->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    {!! $errors->first('channel_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Office <span
-                                            class="text-danger">*</span></label>
-                                    <select name="office_id" id="office_id" onchange=""
-                                        class="form-control select2 @error('office_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Office</option>
-                                        @foreach ($offices as $office)
-                                            <option value="{{ $office->id }}"
-                                                {{ $user->office_id == $office->id ? 'selected' : '' }}>
-                                                {{ $office->name }}-{{ $office->office_code }}</option>
-                                        @endforeach
-
-
-                                    </select>
-                                    {!! $errors->first('office_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="designation_id" class="form-label">Designation<span
-                                            class="text-danger">*</span></label>
-                                    <select id="designation_id" name="designation_id"
-                                        class="form-control select2 @error('designation_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Designation</option>
-                                        @foreach($designations as $designation)
-                                        <option value="{{$designation->id}}"
-                                        {{ $user->designation_id == $designation->id ? 'selected' : '' }}>{{$designation->name}}</option>
-                                        @endforeach
-
-                                    </select>
-                                    {!! $errors->first('designation_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
                                 <div class="mb-3">
                                     <label for="roles" class="form-label">Role<span
                                             class="text-danger">*</span></label>
@@ -191,41 +136,6 @@
 
 @push('script')
     <script>
-        const get_designation = (e) => {
-            const office_id = e.target.value;
-            $.ajax({
-                url: "{{ url('get-designation') }}",
-                type: 'get',
-                data: {
-                    'office_id': office_id
-                },
-                success: function(response) {
-                    $('#designation_id').html('<option value="">Select Designation</option>');
-                    $.each(response.designations, function(key, value) {
-                        $("#designation_id").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-                    });
-                }
-            });
-        }
-        const get_office = (e) => {
-            const channel_id = e.target.value;
-            $.ajax({
-                url: "{{ url('get-office') }}",
-                type: 'get',
-                data: {
-                    'channel_id': channel_id
-                },
-                success: function(response) {
-                    $('#office_id').html('<option value="">Select Office</option>');
-                    $('#designation_id').html('<option value="">Select Designation</option>');
-                    $.each(response.offices, function(key, value) {
-                        $("#office_id").append('<option value="' + value
-                            .id + '">' + value.name + '-' + value.office_code + '</option>');
-                    });
-                }
-            });
-        }
         document.getElementById('readUrl').addEventListener('change', function() {
             if (this.files[0]) {
                 var picture = new FileReader();

@@ -9,20 +9,6 @@
                         <span key="t-dashboard">Dashboard</span>
                     </a>
                 </li>
-                @canany(card_permissions())
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class='bx bx-share-alt'></i>
-                            <span key="t-multi-level">Card Management</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="true">
-                            @can('cards.index')
-                                <li><a href="{{ route('cards.index') }}">{{ __('Card List') }}</a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcanany
             </ul>
         </div>
     </div>

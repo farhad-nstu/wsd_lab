@@ -66,60 +66,9 @@
                                         placeholder="Enter mobile" value="{{ old('mobile') }}">
                                     {!! $errors->first('mobile', '<span class="invalid-feedback">:message</span>') !!}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="staff_id" class="form-label">Staff ID</label>
-                                    <input type="text" name="staff_id"
-                                        class="form-control @error('staff_id') is-invalid @enderror" id="staff_id"
-                                        placeholder="Enter staff ID" value="{{ old('staff_id') }}">
-                                    {!! $errors->first('staff_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Business Channel <span
-                                            class="text-danger">*</span></label>
-                                    <select name="channel_id" id="channel_id" onchange="get_office(event)"
-                                        class="form-control select2 @error('channel_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Business Channel</option>
-                                        @foreach ($channels as $channel)
-                                            <option value="{{ $channel->id }}"
-                                                {{ old('channel_id') == $channel->id ? 'selected' : '' }}>
-                                                {{ $channel->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    {!! $errors->first('channel_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Office <span
-                                            class="text-danger">*</span></label>
-                                    <select name="office_id" id="office_id" onchange=""
-                                        class="form-control select2 @error('office_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Office</option>
-                                        @foreach ($offices as $office)
-                                            <option value="{{ $office->id }}">{{ $office->name }}</option>
-                                        @endforeach
-
-                                    </select>
-                                    {!! $errors->first('office_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="designation_id" class="form-label">Designation<span
-                                            class="text-danger">*</span></label>
-                                    <select id="designation_id" name="designation_id"
-                                        class="form-control select2 @error('designation_id') is-invalid @enderror"
-                                        style="width:100%" required>
-                                        <option value="">Select Designation</option>
-                                        @foreach ($designations as $designation)
-                                            <option value="{{ $designation->id }}">{{ $designation->name }}</option>
-                                        @endforeach
-
-                                    </select>
-                                    {!! $errors->first('designation_id', '<span class="invalid-feedback">:message</span>') !!}
-                                </div>
                                 <div class="mb-3">
                                     <label for="roles" class="form-label">Role<span
                                             class="text-danger">*</span></label>

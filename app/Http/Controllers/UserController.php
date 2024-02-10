@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             "name" => "required|string",
-            "avatar" => "nullable|mimes:image|max:1024",
+            "avatar" => "nullable|mimes:jpg,jpeg,png|max:1024",
             "email" => "required|string|unique:users,email",
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6',
@@ -131,7 +131,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             "name" => "required|string",
-            "avatar" => "nullable|image",
+            "avatar" => "nullable|mimes:jpg,jpeg,png|max:1024",
             "email" => "required|email|unique:" . with(new User())->getTable() . ",email," . $request->user_id,
             "mobile" => "nullable|numeric|unique:" . with(new User())->getTable() . ",mobile," . $request->user_id,
 
@@ -169,7 +169,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             "name" => "required|string",
-            "avatar" => "nullable|image",
+            "avatar" => "nullable|mimes:jpg,jpeg,png|max:1024",
             "email" => "required|email|unique:" . with(new User())->getTable() . ",email," . $id,
             "mobile" => "nullable|numeric|unique:" . with(new User())->getTable() . ",mobile," . $id,
             "roles"    => "required|array",
